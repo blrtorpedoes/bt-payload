@@ -13,6 +13,37 @@ import Blog from './collections/Blog'
 import Media from './collections/Media'
 import Sections from './collections/Sections'
 
+
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
+// import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
+import { s3Adapter } from '../src/adapters/s3'
+
+import type { Adapter } from '../src/types'
+
+
+let adapter: Adapter
+let uploadOptions
+
+
+if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 's3') {
+  uploadOptions = {
+    useTempFiles: true,
+  }
+
+   s3Adapter({
+    config: {
+      endpoint: process.env.R2_ENDPOINT,
+      forcePathStyle: process.env.R2_FORCE_PATH_STYLE === 'true',
+      region: process.env.R2_REGION,
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID,
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+      },
+    },
+    bucket: process.env.S3_BUCKET,
+  })
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -26,8 +57,16 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  plugins: [payloadCloud()],
+  plugins: [payloadCloud(),cloudStorage({
+    enabled: process.env.MY_CONDITION === 'true',
+    collections: {
+      'my-collection-slug': {
+        adapter: adapter, // see docs for the adapter you want to use
+      },
+    },
+  }),],
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
   }),
+  
 })

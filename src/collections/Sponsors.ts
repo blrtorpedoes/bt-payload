@@ -19,12 +19,6 @@ export const Sponsors: CollectionConfig = {
         height: 1024,
         position: 'centre',
       },
-      {
-        name: 'tablet',
-        width: undefined,
-        height: undefined,
-        position: 'centre',
-      },
     ],
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*'],
