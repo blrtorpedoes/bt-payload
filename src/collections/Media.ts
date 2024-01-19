@@ -20,33 +20,10 @@ const Media: CollectionConfig = {
   },
 
   fields: [
-    {
-      name: 'Image',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'MEDIA',
-      type: 'array',
-      label: 'Gallery',
-      minRows: 1,
-      maxRows: 100,
-      interfaceName: 'CardSlider',
-      labels: {
-        singular: 'Image',
-        plural: 'Images',
+      {
+        name: 'Name',
+        type: 'text',
       },
-      fields: [
-        {
-          name: 'Name',
-          type: 'text',
-        },
-        {
-          name: 'Tag',
-          type: 'text',
-        },
-      ],
-    },
   ],
 };
 
