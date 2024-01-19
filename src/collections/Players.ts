@@ -42,10 +42,6 @@ const Players: CollectionConfig = {
                 name: 'Position',
                 type: 'text',
               },
-              {
-                name: 'Details',
-                type: 'text',
-              },
           
           ],
   },

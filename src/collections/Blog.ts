@@ -6,20 +6,7 @@ import {
 const Blog: CollectionConfig = {
   slug: 'Blog',
 
-  upload: {
-    staticURL: '/media',
-    staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'cover',
-        width: undefined,
-        height: undefined,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
-  },
+
 
   fields: [
     {
