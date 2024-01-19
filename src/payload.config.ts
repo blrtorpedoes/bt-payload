@@ -16,12 +16,12 @@ import Sections from './collections/Sections'
 
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 // import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
-import { s3Adapter } from '../src/adapters/s3'
 
 import type { Adapter } from '../src/types'
+import { adapter } from './adapters/s3eg'
 
 
-let adapter: Adapter
+
 let uploadOptions
 
 
@@ -30,18 +30,6 @@ if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 's3') {
     useTempFiles: true,
   }
 
-   s3Adapter({
-    config: {
-      endpoint: process.env.R2_ENDPOINT,
-      forcePathStyle: process.env.R2_FORCE_PATH_STYLE === 'true',
-      region: process.env.R2_REGION,
-      credentials: {
-        accessKeyId: process.env.R2_ACCESS_KEY_ID,
-        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
-      },
-    },
-    bucket: process.env.S3_BUCKET,
-  })
 }
 
 export default buildConfig({
@@ -60,7 +48,8 @@ export default buildConfig({
   plugins: [payloadCloud(),cloudStorage({
     enabled: process.env.MY_CONDITION === 'true',
     collections: {
-      'my-collection-slug': {
+      'media': {
+        disablePayloadAccessControl : true,
         adapter: adapter, // see docs for the adapter you want to use
       },
     },

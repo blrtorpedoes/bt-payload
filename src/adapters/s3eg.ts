@@ -12,4 +12,4 @@ const adapter = s3Adapter({
     bucket: process.env.R2_BUCKET_NAME,
   })
 
-export { s3Adapter }
+export { adapter }
