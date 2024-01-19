@@ -18,11 +18,34 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 // import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 
 import type { Adapter } from '../src/types'
-import { adapter } from './adapters/s3eg'
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
+import { getGenerateURL } from './adapters/generateFileUrl'
 
 
 
-let uploadOptions
+
+const adapter = s3Adapter({
+  config: {
+    credentials: {
+      accessKeyId: process.env.R2_ACCESS_KEY_ID,
+      secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
+    },
+    endpoint : "https://aa825ba64ba0c1b5cb89407d580ad294.r2.cloudflarestorage.com",
+    region: process.env.R2_REGION
+  },
+  bucket: process.env.R2_BUCKET_NAME,
+
+})
+
+
+
+let uploadOptions, bucket, endpoint
+
+console.log(process.env.R2_ENDPOINT)
+
+if (process.env.R2_ENDPOINT != "") {
+  endpoint = process.env.R2_ENDPOINT
+}
 
 
 if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 's3') {
@@ -31,7 +54,6 @@ if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 's3') {
   }
 
 }
-
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -49,8 +71,9 @@ export default buildConfig({
     enabled: process.env.MY_CONDITION === 'true',
     collections: {
       'media': {
-        disablePayloadAccessControl : true,
-        adapter: adapter, // see docs for the adapter you want to use
+        disablePayloadAccessControl : true, 
+        generateFileURL : getGenerateURL(process.env.R2_ENDPOINT),
+        adapter: adapter, 
       },
     },
   }),],
