@@ -3,9 +3,10 @@ import axios from 'axios';
 
 const Media: CollectionConfig = {
   slug: 'media',
-
+  access:{
+      read:({req})=>true
+  },
   upload: {
-    adminThumbnail: 'thumbnail',
     imageSizes: [
       {
         name: 'card',
@@ -14,9 +15,6 @@ const Media: CollectionConfig = {
         position: 'centre',
       },
     ],
-    staticURL: '/media',
-    staticDir: 'media',
-    mimeTypes: ['image/*'],
   },
 
   fields: [

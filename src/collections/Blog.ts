@@ -5,9 +5,9 @@ import {
 
 const Blog: CollectionConfig = {
   slug: 'Blog',
-
-
-
+  access:{
+      read:({req})=>true
+  },
   fields: [
     {
       name: 'Cover_Image', 

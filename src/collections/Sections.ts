@@ -3,6 +3,9 @@ import { CollectionConfig } from 'payload/types'
 const Sections: CollectionConfig = {
   slug: 'sections',
 
+  access :{
+    read : ()=>true
+  },
 
   fields: [
     {
@@ -15,11 +18,12 @@ const Sections: CollectionConfig = {
       type: 'text',
     },
     
-    {
+ {
       name: 'Image', 
       type: 'upload',
       relationTo: 'media',
     },
+
 
     {
       name: 'Description', 

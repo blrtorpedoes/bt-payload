@@ -17,7 +17,6 @@ import Sections from './collections/Sections'
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 // import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 
-import type { Adapter } from '../src/types'
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 import { getGenerateURL } from './adapters/generateFileUrl'
 
@@ -60,6 +59,8 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: lexicalEditor({}),
+ cors:"*", 
+
   collections: [Users,Blog,Media,Sections,Players,Sponsors],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -72,6 +73,7 @@ export default buildConfig({
     collections: {
       'media': {
         disablePayloadAccessControl : true, 
+        disableLocalStorage:true,
         generateFileURL : getGenerateURL(process.env.R2_ENDPOINT),
         adapter: adapter, 
       },

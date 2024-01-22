@@ -4,7 +4,9 @@ import { CollectionConfig } from 'payload/types'
 const Players: CollectionConfig = {
   slug: 'Players',
 
-
+  access:{
+      read:({req})=>true
+  },
   fields: [
     {
       name: 'Image', 

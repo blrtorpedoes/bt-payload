@@ -65,8 +65,7 @@ export interface Blog {
 }
 export interface Media {
   id: string;
-  Image?: string | Media | null;
-  MEDIA?: CardSlider;
+  Name?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -102,28 +101,13 @@ export interface Player {
   Nationality?: string | null;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  sizes?: {
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 export interface Sponsor {
   id: string;
-  Profile_Image?: string | Media | null;
+  Image?: string | Media | null;
   Sponsor_Name?: string | null;
-  Image_Tag?: string | null;
+  Sponsor_Type?: string | null;
+  Sponsor_Tag?: string | null;
   updatedAt: string;
   createdAt: string;
 }

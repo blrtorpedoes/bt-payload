@@ -2,12 +2,12 @@ import { CollectionConfig } from 'payload/types'
 
 export const Sponsors: CollectionConfig = {
   slug: 'sponsors',
-
-
-
+  access:{
+      read:({req})=>true
+  },
   fields: [
     {
-      name: 'Profile_Image', 
+      name: 'Image', 
       type: 'upload',
       relationTo: 'media',
     },
@@ -16,9 +16,13 @@ export const Sponsors: CollectionConfig = {
       name : 'Sponsor_Name',
       type : 'text',
     },
+    {
+      name : 'Sponsor_Type',
+      type : 'text',
+    },
 
     {
-      name : 'Image_Tag',
+      name : 'Sponsor_Tag',
       type : 'text',
     },
     
