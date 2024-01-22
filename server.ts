@@ -1,20 +1,20 @@
-import express from 'express'
-import payload from 'payload'
+import express from "express";
+import payload from "payload";
 
-require('dotenv').config()
-const app = express()
+require("dotenv").config();
+const app = express();
 
 const start = async () => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
-  })
+  });
 
-  app.listen(3000, async () => {
+  app.listen(5000, async () => {
     console.log(
-      "Express is now listening for incoming connections on port 3000."
-    )
-  })
-}
+      "Express is now listening for incoming connections on port 5000."
+    );
+  });
+};
 
-start()
+start();

@@ -3,19 +3,8 @@ import { CollectionConfig } from 'payload/types'
 const Sections: CollectionConfig = {
   slug: 'sections',
 
-  upload: {
-    staticURL: '/media',
-    staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
+  access :{
+    read : ()=>true
   },
 
   fields: [
@@ -29,11 +18,12 @@ const Sections: CollectionConfig = {
       type: 'text',
     },
     
-    {
+ {
       name: 'Image', 
       type: 'upload',
       relationTo: 'media',
     },
+
 
     {
       name: 'Description', 

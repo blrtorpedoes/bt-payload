@@ -1,23 +1,12 @@
 import { CollectionConfig } from 'payload/types'
 
+
 const Players: CollectionConfig = {
   slug: 'Players',
 
-  upload: {
-    staticURL: '/media',
-    staticDir: 'media',
-    imageSizes: [
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
+  access:{
+      read:({req})=>true
   },
-
   fields: [
     {
       name: 'Image', 
@@ -39,10 +28,6 @@ const Players: CollectionConfig = {
             fields: [
               {
                 name: 'Position',
-                type: 'text',
-              },
-              {
-                name: 'Details',
                 type: 'text',
               },
           
