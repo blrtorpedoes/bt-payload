@@ -1,61 +1,64 @@
-import { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload/types';
 import {
-  lexicalEditor
-} from '@payloadcms/richtext-lexical'
+  HTMLConverterFeature,
+  lexicalEditor,
+  lexicalHTML,
+} from '@payloadcms/richtext-lexical';
 
 const Blog: CollectionConfig = {
   slug: 'Blog',
-  access:{
-      read:({req})=>true
+  access: {
+    read: ({ req }) => true,
   },
   fields: [
     {
-      name: 'Cover_Image', 
+      name: 'Cover_Image',
       type: 'upload',
       relationTo: 'media',
     },
     {
-      name: 'Title', 
+      name: 'Title',
       type: 'text',
     },
     {
-      name: 'Secondary_Text', 
+      name: 'Secondary_Text',
       type: 'text',
     },
     {
-      name: 'Tag', 
+      name: 'Tag',
       type: 'text',
     },
     {
-      name: 'Blog_content', 
+      name: 'Blog_content',
       type: 'richText',
-      editor: lexicalEditor({})
-      //   admin: {
-      //     elements: [
-      //       'h1',
-      //       'h2',
-      //       'h3',
-      //       'h4',
-      //       'link',
-      //       'blockquote',
-      //       'textAlign',
-      //       'indent',
-      //       'ol',
-      //       'ul'
-      //     ],
-      //     leaves: [
-      //       'bold',
-      //       'italic',
-      //       'code',
-      //       'strikethrough',
-      //       'underline'
-      //     ]
-          
-      //   }
-      // })
-    }
-  
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          HTMLConverterFeature({}),
+        ],
+      }),
+    },
+    lexicalHTML('Blog_content', { name: 'Blog_content_html' }),
+    {
+      name: 'Blog_content_output',
+      type: 'textarea',
+      admin: {
+        readOnly: true,
+      },
+    },
   ],
-}
+  hooks: {
+    afterRead: [
+      async ({ doc, req }) => {
+        const htmlContentField = 'Blog_content_html'; 
+        const htmlContent = doc[htmlContentField]; 
 
-export default Blog
+        doc.Blog_content_output = htmlContent || 'test'; 
+
+        return doc;
+      },
+    ],
+  },
+};
+
+export default Blog;
