@@ -19,6 +19,7 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 import { getGenerateURL } from './adapters/generateFileUrl'
+import Carousel from './collections/Carousel'
 
 
 
@@ -61,7 +62,7 @@ export default buildConfig({
   editor: lexicalEditor({}),
  cors:"*", 
 
-  collections: [Users,Blog,Media,Sections,Players,Sponsors],
+  collections: [Users,Blog,Media,Sections,Players,Sponsors,Carousel],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

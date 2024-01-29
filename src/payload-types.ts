@@ -21,6 +21,7 @@ export interface Config {
     sections: Section;
     Players: Player;
     sponsors: Sponsor;
+    Carousel: Carousel;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -108,6 +109,15 @@ export interface Sponsor {
   Sponsor_Name?: string | null;
   Sponsor_Type?: string | null;
   Sponsor_Tag?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Carousel {
+  id: string;
+  Cover?: string | Media | null;
+  Title?: string | null;
+  Link?: (string | null) | Blog;
+  Description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
