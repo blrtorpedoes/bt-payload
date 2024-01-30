@@ -15,6 +15,10 @@ const Blog: CollectionConfig = {
       relationTo: 'media',
     },
     {
+      name:'slug',
+      type:"text"
+    },
+    {
       name: 'Title', 
       type: 'text',
     },
