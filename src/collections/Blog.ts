@@ -16,7 +16,9 @@ const Blog: CollectionConfig = {
     },
     {
       name:'slug',
-      type:"text"
+      type:"text",
+      unique:true,
+      index: true,
     },
     {
       name: 'Title', 

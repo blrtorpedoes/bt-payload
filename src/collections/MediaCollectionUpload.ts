@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 
-const Media: CollectionConfig = {
-  slug: 'media',
+const MediaCollectionUpload: CollectionConfig = {
+  slug: 'mediaCollectionUpload',
   access:{
       read:({req})=>true
   },
@@ -9,10 +9,10 @@ const Media: CollectionConfig = {
 
   fields: [
       {
-        name: 'Name',
+        name: 'Title',
         type: 'text',
       },
   ],
 };
 
-export default Media;
+export default MediaCollectionUpload
