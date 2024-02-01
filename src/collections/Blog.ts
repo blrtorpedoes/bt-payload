@@ -17,7 +17,13 @@ const Blog: CollectionConfig = {
       relationTo: 'media',
     },
     {
-      name: 'Title',
+      name:'slug',
+      type:"text",
+      unique:true,
+      index: true,
+    },
+    {
+      name: 'Title', 
       type: 'text',
     },
     {

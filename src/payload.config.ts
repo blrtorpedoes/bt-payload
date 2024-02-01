@@ -20,6 +20,8 @@ import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
 import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 import { getGenerateURL } from './adapters/generateFileUrl'
 import Carousel from './collections/Carousel'
+import MediaCollectionUpload from './collections/MediaCollectionUpload'
+import MediaCollection from './collections/MediaCollection'
 
 
 
@@ -62,7 +64,7 @@ export default buildConfig({
   editor: lexicalEditor({}),
  cors:"*", 
 
-  collections: [Users,Blog,Media,Sections,Players,Sponsors,Carousel],
+  collections: [Users,Blog,Media, MediaCollectionUpload, Sections,Players,Sponsors,Carousel,MediaCollection],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -73,6 +75,13 @@ export default buildConfig({
     enabled: process.env.MY_CONDITION === 'true',
     collections: {
       'media': {
+        disablePayloadAccessControl : true, 
+        disableLocalStorage:true,
+        generateFileURL : getGenerateURL(process.env.R2_ENDPOINT),
+        adapter: adapter, 
+      },
+
+      'mediaCollectionUpload': {
         disablePayloadAccessControl : true, 
         disableLocalStorage:true,
         generateFileURL : getGenerateURL(process.env.R2_ENDPOINT),
