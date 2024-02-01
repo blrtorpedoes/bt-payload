@@ -18,10 +18,12 @@ export interface Config {
     users: User;
     Blog: Blog;
     media: Media;
+    mediaCollectionUpload: MediaCollectionUpload;
     sections: Section;
     Players: Player;
     sponsors: Sponsor;
     Carousel: Carousel;
+    mediaCollection: MediaCollection;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -43,6 +45,7 @@ export interface User {
 export interface Blog {
   id: string;
   Cover_Image?: string | Media | null;
+  slug?: string | null;
   Title?: string | null;
   Secondary_Text?: string | null;
   Tag?: string | null;
@@ -61,6 +64,8 @@ export interface Blog {
     };
     [k: string]: unknown;
   } | null;
+  Blog_content_html?: string | null;
+  Blog_content_output?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -75,16 +80,18 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  sizes?: {
-    card?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
+}
+export interface MediaCollectionUpload {
+  id: string;
+  Title?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
 }
 export interface Section {
   id: string;
@@ -118,6 +125,19 @@ export interface Carousel {
   Title?: string | null;
   Link?: (string | null) | Blog;
   Description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface MediaCollection {
+  id: string;
+  Collection_Title?: string | null;
+  slug?: string | null;
+  Images?:
+    | {
+        Image?: string | MediaCollectionUpload | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }

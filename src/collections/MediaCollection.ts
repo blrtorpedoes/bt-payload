@@ -3,6 +3,10 @@ import { CollectionConfig } from "payload/types";
 
 const MediaCollection :CollectionConfig = {
     slug:"mediaCollection",
+
+    access:{
+        read:({req})=>true
+    },
     fields:[
         {
             name:"Collection_Title",
