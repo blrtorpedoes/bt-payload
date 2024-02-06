@@ -22,6 +22,8 @@ import { getGenerateURL } from './adapters/generateFileUrl'
 import Carousel from './collections/Carousel'
 import MediaCollectionUpload from './collections/MediaCollectionUpload'
 import MediaCollection from './collections/MediaCollection'
+import { Teams } from './collections/Teams'
+import { Fixtures } from './collections/Fixtures'
 
 
 
@@ -64,7 +66,7 @@ export default buildConfig({
   editor: lexicalEditor({}),
  cors:"*", 
 
-  collections: [Users,Blog,Media, MediaCollectionUpload, Sections,Players,Sponsors,Carousel,MediaCollection],
+  collections: [Users,Blog,Media, MediaCollectionUpload, Sections,Players,Sponsors,Carousel,MediaCollection, Teams, Fixtures],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
