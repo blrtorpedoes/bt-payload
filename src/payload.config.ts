@@ -66,7 +66,7 @@ export default buildConfig({
   editor: lexicalEditor({}),
  cors:"*", 
 
-  collections: [Users,Blog,Media, MediaCollectionUpload, Sections,Players,Sponsors,Carousel,MediaCollection, Teams, Fixtures],
+  collections: [Users,Blog,Media, MediaCollectionUpload, Players, Sections,Sponsors,Carousel,MediaCollection, Teams, Fixtures],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

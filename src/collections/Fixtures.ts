@@ -18,7 +18,6 @@ export const Fixtures:CollectionConfig= {
                 date:{
                     pickerAppearance:"dayAndTime",
                 }
-
             }
         },
         {

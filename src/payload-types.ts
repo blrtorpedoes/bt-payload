@@ -6,24 +6,19 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-export type CardSlider =
-  | {
-      Position?: string | null;
-      id?: string | null;
-    }[]
-  | null;
-
 export interface Config {
   collections: {
     users: User;
     Blog: Blog;
     media: Media;
     mediaCollectionUpload: MediaCollectionUpload;
-    sections: Section;
     Players: Player;
+    sections: Section;
     sponsors: Sponsor;
     Carousel: Carousel;
     mediaCollection: MediaCollection;
+    Teams: Team;
+    Fixtures: Fixture;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -93,20 +88,24 @@ export interface MediaCollectionUpload {
   width?: number | null;
   height?: number | null;
 }
+export interface Player {
+  id: string;
+  Image?: string | Media | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  number?: number | null;
+  positions?: string | null;
+  height?: number | null;
+  country_code?: ('IN' | 'BR' | 'AU') | null;
+  updatedAt: string;
+  createdAt: string;
+}
 export interface Section {
   id: string;
   Title?: string | null;
   Anchor?: string | null;
   Image?: string | Media | null;
   Description?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Player {
-  id: string;
-  Image?: string | Media | null;
-  Position?: CardSlider;
-  Nationality?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -138,6 +137,24 @@ export interface MediaCollection {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Team {
+  id: string;
+  Team_Name?: string | null;
+  Team_Logo?: string | Media | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Fixture {
+  id: string;
+  Match_No: number;
+  Date: string;
+  Team_1: string | Team;
+  Team_2: string | Team;
+  Round_Type: string;
+  Status: string;
   updatedAt: string;
   createdAt: string;
 }
