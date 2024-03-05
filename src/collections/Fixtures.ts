@@ -33,14 +33,42 @@ export const Fixtures:CollectionConfig= {
             
         },
         {
-            name:"Round_Type",
+            name:"round_type",
             type:"text",
-            required:true
+            required:true,
+            label:"Round Type",
+            defaultValue:"League"
         },
         {
-            name:"Status",
+            name:"status",
+            type:"radio",
+            options:["Upcoming","Played","Cancelled","Rescheduled"],
+            defaultValue:"Upcoming",
+            required:true,
+            label:"Status"
+
+        },{
+            name:"score",
             type:"text",
-            required:true
+            label: "Score",
+              admin:{
+                condition:(data,siblingData,{user})=>{
+                    if(data.status === "Played") return true
+                    return false
+                }
+            }
+
+        },{
+            name:"Winner",
+            type:"radio",
+            options:["Team_1","Team_2"],
+            admin:{
+                condition:(data,siblingData,{user})=>{
+                    if(data.status === "Played") return true
+
+                    return false
+                }
+            }
         }
     ]
 }

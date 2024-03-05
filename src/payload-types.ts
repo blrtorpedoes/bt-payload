@@ -122,7 +122,7 @@ export interface Carousel {
   id: string;
   Cover?: string | Media | null;
   Title?: string | null;
-  Link?: (string | null) | Blog;
+  Link?: string | null;
   Description?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -153,8 +153,10 @@ export interface Fixture {
   Date: string;
   Team_1: string | Team;
   Team_2: string | Team;
-  Round_Type: string;
-  Status: string;
+  round_type: string;
+  status: 'Upcoming' | 'Played' | 'Cancelled' | 'Rescheduled';
+  score?: string | null;
+  Winner?: ('Team_1' | 'Team_2') | null;
   updatedAt: string;
   createdAt: string;
 }

@@ -18,8 +18,7 @@ const Carousel: CollectionConfig = {
         },
         {
             name: "Link",
-            type: "relationship",
-            relationTo: "Blog"
+            type: "text",
         }
         , {
             name: 'Description',
