@@ -1,37 +1,34 @@
-import { CollectionConfig } from 'payload/types'
+import { CollectionConfig } from "payload/types";
 
 const Sections: CollectionConfig = {
-  slug: 'sections',
+  slug: "sections",
 
-  access :{
-    read : ()=>true
+  access: {
+    read: () => true,
   },
 
   fields: [
     {
-      name: 'Title', 
-      type: 'text',
+      name: "Title",
+      type: "text",
     },
 
     {
-      name: 'Anchor', 
-      type: 'text',
+      name: "Anchor",
+      type: "text",
     },
-    
- {
-      name: 'Image', 
-      type: 'upload',
-      relationTo: 'media',
-    },
-
 
     {
-      name: 'Description', 
-      type: 'textarea',
+      name: "Image",
+      type: "upload",
+      relationTo: "media",
     },
-    
-  
+
+    {
+      name: "Description",
+      type: "textarea",
+    },
   ],
-}
+};
 
-export default Sections
+export default Sections;
