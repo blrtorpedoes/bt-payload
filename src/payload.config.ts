@@ -83,7 +83,7 @@ export default buildConfig({
   plugins: [
     payloadCloud(),
     cloudStorage({
-      enabled: process.env.MY_CONDITION === "true",
+      // enabled: process.env.MY_CONDITION === "true",
       collections: {
         media: {
           disablePayloadAccessControl: true,
